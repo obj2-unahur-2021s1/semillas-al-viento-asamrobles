@@ -3,6 +3,10 @@ package ar.edu.unahur.obj2.semillasAlViento
 abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
   fun esFuerte() = this.horasDeSolQueTolera() > 10
 
+  /*
+  desacoplamiento
+  Deberia estar en la clase parcela ya que añade otra responsabilidad a la clase planta
+  */
   fun parcelaTieneComplicaciones(parcela: Parcela) =
     parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
 
@@ -15,6 +19,11 @@ class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemi
   override fun daSemillas() = this.esFuerte() || altura > 0.4
 }
 
+/*
+Abstraccion
+Para evitar pasar por parametro la condicion de transgenica a la soja
+Se podria  implementar una clase SojaTransgenica que herede de Soja y use super en horasDeSolQueTolera
+*/
 class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
   override fun horasDeSolQueTolera(): Int  {
     // ¡Magia de Kotlin! El `when` es como un `if` pero más poderoso:
@@ -28,7 +37,12 @@ class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean)
     return if (esTransgenica) horasBase * 2 else horasBase
   }
 
-
+  /*
+  la funcion daSemillas es Redundante al utilizar un condicional para devolver un valor booleano, conviene retornar
+  directamente el resultado de la operacion logica.
+  Se reduce la Abstraccion ya que ademas de resolver la logica para determinar si da semillas tambien resuelve la condicion
+  alternativa para que esto ocurra, que bien podria separarse en otra funcion y ganar reusabilidad.
+  */
   override fun daSemillas(): Boolean  {
     if (this.esTransgenica) {
       return false
