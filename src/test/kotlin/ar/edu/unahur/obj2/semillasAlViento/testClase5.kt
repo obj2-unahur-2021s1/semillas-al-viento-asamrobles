@@ -17,17 +17,24 @@ class testClase5 : DescribeSpec ({
         /*val plantaMadre = Planta(1910,35.0F)*/
 
         describe("Provando plantas Sojas: año, altura , horas de sol, es fuerte y si da o no nuevas semillas")  {
-            plantaPruevaSojaNo.anioObtencionSemilla shouldBe 2010
-            plantaPruevaSojaSi.altura shouldBe 10.0
-            plantaPruevaSojaSi.horasDeSolQueTolera() shouldBe 18
-            plantaPruevaSojaSiPetisa.horasDeSolQueTolera() shouldBe 12
-            plantaPruevaSojaNo.horasDeSolQueTolera() shouldBe 7
-            plantaPruevaSojaSi.esFuerte() shouldBe true
-            plantaPruevaSojaSiPetisa.esFuerte() shouldBe true
-            plantaPruevaSojaNo.esFuerte() shouldBe false
-            plantaPruevaSojaNo.daSemillas() shouldBe false
-            plantaPruevaSojaSiPetisa.daSemillas() shouldBe false
-            plantaPruevaSojaSi.daSemillas() shouldBe true
+
+            it("probando soja transgenica") {
+                plantaPruevaSojaSi.esTransgenica shouldBe true
+                plantaPruevaSojaSi.altura shouldBe 10.0
+                plantaPruevaSojaSi.horasDeSolQueTolera() shouldBe 18
+                plantaPruevaSojaSiPetisa.horasDeSolQueTolera() shouldBe 12
+                plantaPruevaSojaSi.esFuerte() shouldBe true
+                plantaPruevaSojaSiPetisa.esFuerte() shouldBe true
+                plantaPruevaSojaSiPetisa.daSemillas() shouldBe false
+                plantaPruevaSojaSi.daSemillas() shouldBe true
+            }
+            it("probando soja comun") {
+                plantaPruevaSojaNo.esTransgenica shouldBe false
+                plantaPruevaSojaNo.anioObtencionSemilla shouldBe 2010
+                plantaPruevaSojaNo.horasDeSolQueTolera() shouldBe 7
+                plantaPruevaSojaNo.esFuerte() shouldBe false
+                plantaPruevaSojaNo.daSemillas() shouldBe false
+            }
 
         }
 
@@ -39,5 +46,9 @@ class testClase5 : DescribeSpec ({
             plantaPruevaMenta.daSemillas() shouldBe true
             plantaPruevaMentaPetisa.daSemillas() shouldBe false
         }
+        describe("Probando parcelas") {
+
+        }
+
     }
 })
