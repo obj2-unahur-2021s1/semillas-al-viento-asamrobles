@@ -83,5 +83,15 @@ class testClase5 : DescribeSpec ({
                 parcela5.cantidadMaximaPlantas() shouldBe 11
             }
         }
+        describe("plantar en la parcela") {
+            it("parcela2 permite plantar hasta 4 plantas con ") {
+                parcela2.plantar(plantaPruevaSojaSi)
+                parcela2.plantar(plantaPruevaSojaNo)
+                parcela2.plantar(plantaPruevaSojaSiPetisa)
+                parcela2.plantar(plantaPruevaMenta)
+
+                parcela2.cantidadPlantas shouldBe 4
+            }
+        }
     }
 })
