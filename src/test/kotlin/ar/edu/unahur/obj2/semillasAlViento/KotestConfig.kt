@@ -11,3 +11,5 @@ class KotestConfig: AbstractProjectConfig() {
   // Reporta el resultado de los tests como XML, lo cual usamos para que se muestren en el pull request cuando fallan.
   override fun listeners() = listOf(JunitXmlReporter())
 }
+
+class testParaClase5
