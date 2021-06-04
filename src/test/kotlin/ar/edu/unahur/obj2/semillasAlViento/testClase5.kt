@@ -2,7 +2,8 @@ package ar.edu.unahur.obj2.semillasAlViento
 
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldBe
@@ -14,7 +15,7 @@ class testClase5 : DescribeSpec ({
         val plantaPruevaSojaSiPetisa = Soja(1990,0.3F,true) //tolera 6 horas de sol
         val plantaPruevaSojaNo = Soja(2010,0.5F,false) //tolera 7 horas de sol
         val plantaPruevaSojaNoPetisa = Soja(2011,0.2F,false) //tolera 6 horas, no es fuerte, no da semillas
-        val plantaPruevaMenta = Menta(2000,10.0F) //tolera 9 horas de sol
+        val plantaPruevaMenta = Menta(2000,10.0F) //tolera 6 horas de sol
         val plantaPruevaMentaPetisa = Menta(1920,0.2F) //tolera 6 horas de sol
 
         //parcelas ancho > largo
@@ -93,11 +94,11 @@ class testClase5 : DescribeSpec ({
             parcela2.plantar(plantaPruevaMenta)
             parcela2.plantar(plantaPruevaMentaPetisa)
 
-            it("una parcela con lugar que recibe 9 horas de sol permite plantar una planta que tolera 8 o mas horas de sol"){
+            it("una parcela con lugar que recibe 9 horas de sol permite plantar una planta que tolera 8 horas o mas"){
                 parcela3.plantar(plantaPruevaSojaSi)
                 parcela3.plantas.shouldContainExactlyInAnyOrder(plantaPruevaSojaSi)
             }
-            it("una parcela con lugar que recibe 9 horas de sol no permite plantar una planta que tolera menos de 8 horas de sol"){
+            it("una parcela con lugar que recibe 9 horas de sol no permite plantar una planta que tolera menos de 8 horas"){
                 parcela3.plantar(plantaPruevaMenta)
                 parcela3.plantas.shouldNotContain(plantaPruevaMenta)
             }
@@ -115,6 +116,18 @@ class testClase5 : DescribeSpec ({
                 shouldThrowAny { parcela2.plantar(plantaPruevaSojaNoPetisa) }
             }
             */
+        }
+        describe("saber si una parcela tiene complicaciones") {
+            parcela1.plantar(plantaPruevaSojaSi)
+            parcela1.plantar(plantaPruevaSojaNo)
+
+            it("una parcela que recibe 7 horas de sol no tiene complicaciones si sus plantas toleran al menos esa cantidad") {
+                plantaPruevaSojaSi.parcelaTieneComplicaciones(parcela1).shouldBeFalse()
+            }
+            it("una parcela que recibe 7 horas de sol tiene complicaciones si agrego una planta que tolera 6 horas de sol") {
+                parcela1.plantar(plantaPruevaMenta)
+                plantaPruevaSojaSi.parcelaTieneComplicaciones(parcela1).shouldBeTrue()
+            }
         }
     }
 })
