@@ -6,11 +6,14 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldNotContain
+import io.kotest.matchers.comparables.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 
 class testClase5 : DescribeSpec ({
 
     describe("Refactorizando Semillas") {
+        //Variables
+        //Plantas
         val plantaPruevaSojaSi = Soja(2017,10.0F,true) //tolera 9 horas de sol
         val plantaPruevaSojaSiPetisa = Soja(1990,0.3F,true) //tolera 6 horas de sol
         val plantaPruevaSojaNo = Soja(2010,0.5F,false) //tolera 7 horas de sol
@@ -18,21 +21,30 @@ class testClase5 : DescribeSpec ({
         val plantaPruevaMenta = Menta(2000,10.0F) //tolera 6 horas de sol
         val plantaPruevaMentaPetisa = Menta(1920,0.2F) //tolera 6 horas de sol
 
+        val plantaPruevaSojaDaSemillas = Soja(2018,20.0F,false)
+        val plantaPruevaSojaDaSemillas01 = Soja(2008,18.0F,false)
+        val plantaPruevaSojaDaSemillas02 = Soja(2009,16.0F,false)
+        val plantaPruevaSojaDaSemillas03 = Soja(2010,14.0F,false)
+
+        //Parcelas
         //parcelas ancho > largo
         val parcela1 = Parcela(2, 5, 7)
         val parcela2 = Parcela(2, 3, 4)
         val parcela3 = Parcela(3, 5, 9)
-
         // parcelas largo > ancho
         val parcela4 = Parcela(8, 5, 6)
         val parcela5 = Parcela(8, 2, 10)
         val parcela6 = Parcela(4, 3, 3)
 
-        /*val plantaMadre = Planta(1910,35.0F)*/
+        //Agricultoras
+        val agricultora01 = Agricultora(mutableListOf(parcela1,parcela2))
 
         describe("Provando plantas Sojas: año, altura , horas de sol, es fuerte y si da o no nuevas semillas")  {
-
-            it("probando soja transgenica") {
+            it ("Provando soja que da Semillas"){
+                plantaPruevaSojaDaSemillas.daSemillas() shouldBe true
+                plantaPruevaSojaDaSemillas.esTransgenica shouldBe false
+            }
+            it("Probando soja transgenica") {
                 plantaPruevaSojaSi.esTransgenica shouldBe true
                 plantaPruevaSojaSi.altura shouldBe 10.0
                 plantaPruevaSojaSi.horasDeSolQueTolera() shouldBe 18
@@ -59,6 +71,7 @@ class testClase5 : DescribeSpec ({
             plantaPruevaMenta.esFuerte() shouldBe false
             plantaPruevaMenta.daSemillas() shouldBe true
             plantaPruevaMentaPetisa.daSemillas() shouldBe false
+
         }
         describe("Probando parcelas") {
 
@@ -129,5 +142,46 @@ class testClase5 : DescribeSpec ({
                 plantaPruevaSojaSi.parcelaTieneComplicaciones(parcela1).shouldBeTrue()
             }
         }
+
+        describe ("Agricultoras ") {
+            it ("Provando metodo parcelas semilleras") {
+                parcela1.plantar(plantaPruevaSojaDaSemillas)
+                parcela1.plantar(plantaPruevaSojaDaSemillas01)
+                parcela1.plantar(plantaPruevaSojaDaSemillas02)
+                parcela1.plantar(plantaPruevaSojaDaSemillas03)
+                /*
+            agricultora01.parcelasSemilleras() shouldBe true
+
+            Este test no se puede hacer porque devuelve una lista en ves de un boleano lanza este error en
+            kotlin : expected:<true> but was:<[ar.edu.unahur.obj2.semillasAlViento.Parcela@629a894c, ar.edu.unahur.obj2.semillasAlViento.Parcela@68608577]>
+
+             */
+            }
+            it ("Provando metodo plantar estrategicamente, Tiene que plantar en la parcela con mas lugar, El cual funciona mal porque nunca cambia de parcela "){
+                parcela1.cantidadMaximaPlantas() shouldBe 8
+                parcela2.cantidadMaximaPlantas() shouldBe 5
+
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+
+                parcela1.plantas.size shouldBe 3
+                parcela2.plantas.size shouldBe 0
+
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+
+                parcela1.plantas.size shouldBe 5
+                parcela2.plantas.size shouldBe 0
+
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+
+                parcela1.plantas.size shouldBe 7
+                parcela2.plantas.size shouldBe 0
+
+            }
+        }
+
     }
 })
