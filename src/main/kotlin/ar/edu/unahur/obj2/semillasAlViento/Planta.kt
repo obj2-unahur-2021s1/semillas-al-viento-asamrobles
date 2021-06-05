@@ -11,11 +11,6 @@ class Menta(anioObtencionSemilla: Int, altura: Double) : Planta(anioObtencionSem
   override fun daSemillas() = super.daSemillas() || altura > 0.4
 }
 
-/*
-Abstraccion
-Para evitar pasar por parametro la condicion de transgenica a la soja
-Se podria  implementar una clase SojaTransgenica que herede de Soja y use super en horasDeSolQueTolera
-*/
 class Soja(anioObtencionSemilla: Int, altura: Double, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
   override fun horasDeSolQueTolera(): Int  {
     return if (esTransgenica) this.horasBase() * 2

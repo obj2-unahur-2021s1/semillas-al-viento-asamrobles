@@ -34,17 +34,8 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
 
   fun parcelasSemilleras() = parcelas.filter { it.soySemillera() }
 
-
-  /*
-  La funcion plantarEstrategicamente pierde Abstraccion al tener asignadas varias tareas a
-  resolver que podrian dividirse en varias funciones.
-  Disminuye el Desacoplamiento al depender de varios componentes de la clase Parcela que podrian resolver parte del
-  problema dentro de ésta, por ej. con una funcion que calcule el lugar que le queda para plantar.
-  Pierde Robustez al añadir una planta a una parcela sin verificar las condiciones necesarias para ello generando
-  datos y comportamiento inconsistentes.
-  */
   fun plantarEstrategicamente(planta: Planta) {
     val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas() }!!
-    laElegida.plantas.add(planta)
+    laElegida.plantar(planta)
   }
 }

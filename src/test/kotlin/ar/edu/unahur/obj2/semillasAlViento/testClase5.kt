@@ -155,14 +155,19 @@ class testClase5 : DescribeSpec ({
                 agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
                 agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
 
+                parcela1.plantas.size shouldBe 4
+                parcela2.plantas.size shouldBe 1
+
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
+
                 parcela1.plantas.size shouldBe 5
-                parcela2.plantas.size shouldBe 0
+                parcela2.plantas.size shouldBe 2
 
                 agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
-                agricultora01.plantarEstrategicamente(plantaPruevaSojaDaSemillas)
 
-                parcela1.plantas.size shouldBe 7
-                parcela2.plantas.size shouldBe 0
+                parcela1.plantas.size shouldBe 6
+                parcela2.plantas.size shouldBe 2
 
             }
         }
