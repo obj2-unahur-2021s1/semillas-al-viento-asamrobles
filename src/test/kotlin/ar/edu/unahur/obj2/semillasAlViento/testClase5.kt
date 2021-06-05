@@ -5,10 +5,9 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
-import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldBe
 
-class testClase5 : DescribeSpec ({
+class TestClase5 : DescribeSpec ({
 
     describe("Refactorizando Semillas") {
         //Variables
@@ -33,7 +32,6 @@ class testClase5 : DescribeSpec ({
         // parcelas largo > ancho
         val parcela4 = Parcela(8, 5, 6)
         val parcela5 = Parcela(8, 2, 10)
-        val parcela6 = Parcela(4, 3, 3)
 
         //Agricultoras
         val agricultora01 = Agricultora(mutableListOf(parcela1,parcela2))
