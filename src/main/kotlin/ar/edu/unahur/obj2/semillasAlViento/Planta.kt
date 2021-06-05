@@ -18,15 +18,14 @@ Se podria  implementar una clase SojaTransgenica que herede de Soja y use super 
 */
 class Soja(anioObtencionSemilla: Int, altura: Double, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
   override fun horasDeSolQueTolera(): Int  {
-    // ¡Magia de Kotlin! El `when` es como un `if` pero más poderoso:
-    // evalúa cada línea en orden y devuelve lo que está después de la flecha.
-    val horasBase = when {
-      altura < 0.5  -> 6
-      altura < 1    -> 7
-      else          -> 9
-    }
+    return if (esTransgenica) this.horasBase() * 2
+            else this.horasBase()
+  }
 
-    return if (esTransgenica) horasBase * 2 else horasBase
+  fun horasBase() = when {
+    altura < 0.5 -> 6
+    altura < 1 -> 7
+    else -> 9
   }
 
   override fun daSemillas() =
