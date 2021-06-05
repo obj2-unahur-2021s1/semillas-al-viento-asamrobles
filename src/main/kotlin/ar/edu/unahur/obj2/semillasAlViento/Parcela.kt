@@ -26,20 +26,15 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
         }
     }
   }
+  fun soySemillera() = this.plantas.all { it.daSemillas() }
+
 }
 
 class Agricultora(val parcelas: MutableList<Parcela>) {
-  /*
-  La funcion parcelasSemilleras disminuye la Abstraccion del diseño al resolver de manera compleja y poco legible
-  uno de los requerimientos del punto 4 que podria dividirse en varias funciones y resolverlo por partes ganando
-  reusabilidad y genericidad.
-  */
-  fun parcelasSemilleras() =
-    parcelas.filter {
-      parcela -> parcela.plantas.all {
-        planta -> planta.daSemillas()
-      }
-    }
+
+  fun parcelasSemilleras() = parcelas.filter { it.soySemillera() }
+
+
   /*
   La funcion plantarEstrategicamente pierde Abstraccion al tener asignadas varias tareas a
   resolver que podrian dividirse en varias funciones.
