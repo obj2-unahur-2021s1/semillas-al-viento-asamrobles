@@ -30,27 +30,6 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
 
 class Agricultora(val parcelas: MutableList<Parcela>) {
   /*
-  La variable ahorroEnPesos se opone a la cualidad de Mutaciones Controladas ya que añade un cambio de estado interno
-  innecesario para el sistema y la resolucion de los requerimientos.
-  */
-  var ahorrosEnPesos = 20000
-
-  /*
-  La funcion comprarParcela rompe con la cualidad de Simplicidad ya que no esta permitida
-  por una de las consignas del punto 4 y ademas añade complejidad innecesaria al diseño
-  que no aporta a la solucion del problema.
-  A su vez la funcion afecta la Redundancia Minima al introducir el valor
-  de una parcela que va a repetirse en cada instancia de la clase ademas de dificultar
-  su actualizacion, aumentando la posibilidad de cometer errores.
-  */
-  // Suponemos que una parcela vale 5000 pesos
-  fun comprarParcela(parcela: Parcela) {
-    if (ahorrosEnPesos >= 5000) {
-      parcelas.add(parcela)
-      ahorrosEnPesos -= 5000
-    }
-  }
-  /*
   La funcion parcelasSemilleras disminuye la Abstraccion del diseño al resolver de manera compleja y poco legible
   uno de los requerimientos del punto 4 que podria dividirse en varias funciones y resolverlo por partes ganando
   reusabilidad y genericidad.
