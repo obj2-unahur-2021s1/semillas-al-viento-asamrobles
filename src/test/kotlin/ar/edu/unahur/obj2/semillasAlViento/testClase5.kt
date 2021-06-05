@@ -14,17 +14,17 @@ class testClase5 : DescribeSpec ({
     describe("Refactorizando Semillas") {
         //Variables
         //Plantas
-        val plantaPruevaSojaSi = Soja(2017,10.0F,true) //tolera 9 horas de sol
-        val plantaPruevaSojaSiPetisa = Soja(1990,0.3F,true) //tolera 6 horas de sol
-        val plantaPruevaSojaNo = Soja(2010,0.5F,false) //tolera 7 horas de sol
-        val plantaPruevaSojaNoPetisa = Soja(2011,0.2F,false) //tolera 6 horas, no es fuerte, no da semillas
-        val plantaPruevaMenta = Menta(2000,10.0F) //tolera 6 horas de sol
-        val plantaPruevaMentaPetisa = Menta(1920,0.2F) //tolera 6 horas de sol
+        val plantaPruevaSojaSi = Soja(2017,10.0,true) //tolera 9 horas de sol
+        val plantaPruevaSojaSiPetisa = Soja(1990,0.3,true) //tolera 6 horas de sol
+        val plantaPruevaSojaNo = Soja(2010,0.5,false) //tolera 7 horas de sol
+        val plantaPruevaSojaNoPetisa = Soja(2011,0.2,false) //tolera 6 horas, no es fuerte, no da semillas
+        val plantaPruevaMenta = Menta(2000,10.0) //tolera 6 horas de sol
+        val plantaPruevaMentaPetisa = Menta(1920,0.2) //tolera 6 horas de sol
 
-        val plantaPruevaSojaDaSemillas = Soja(2018,20.0F,false)
-        val plantaPruevaSojaDaSemillas01 = Soja(2008,18.0F,false)
-        val plantaPruevaSojaDaSemillas02 = Soja(2009,16.0F,false)
-        val plantaPruevaSojaDaSemillas03 = Soja(2010,14.0F,false)
+        val plantaPruevaSojaDaSemillas = Soja(2018,20.0,false)
+        val plantaPruevaSojaDaSemillas01 = Soja(2008,18.0,false)
+        val plantaPruevaSojaDaSemillas02 = Soja(2009,16.0,false)
+        val plantaPruevaSojaDaSemillas03 = Soja(2010,14.0,false)
 
         //Parcelas
         //parcelas ancho > largo
