@@ -11,8 +11,12 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   var cantidadPlantas = 0
 
   // Refactorizando Inicio
+
   fun parcelaTieneComplicaciones() =
     this.plantas.any { it.horasDeSolQueTolera() < this.horasSolPorDia }
+
+
+  //
 
   fun superficie() = ancho * largo
 

@@ -2,14 +2,6 @@ package ar.edu.unahur.obj2.semillasAlViento
 
 abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
   fun esFuerte() = this.horasDeSolQueTolera() > 10
-
-  /*
-  desacoplamiento
-  Deberia estar en la clase parcela ya que añade otra responsabilidad a la clase planta
-  */
-  fun parcelaTieneComplicaciones(parcela: Parcela) =
-    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
-
   abstract fun horasDeSolQueTolera(): Int
   abstract fun daSemillas(): Boolean
 }
