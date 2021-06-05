@@ -8,7 +8,7 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   ya que añade un cambio de estado interno innecesario que puede ser reemplazado calculando el tamaño
   de la lista plantas.
   */
-  var cantidadPlantas = 0
+  fun cantidadPlantas() = plantas.size
 
   // Refactorizando Inicio
 
@@ -25,7 +25,7 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   de variables que se usan para calcular un valor ya resuelto en la funcion superficie.
   */
   fun cantidadMaximaPlantas() =
-    if (ancho > largo) ancho * largo / 5 else ancho * largo / 3 + largo
+    if (ancho > largo) this.superficie() / 5 else this.superficie() / 3 + largo
 
   /*
   La funcion plantar disminuye la Abstraccion del diseño ya que las multiples condiciones pueden
@@ -33,13 +33,12 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   cantidad de valores booleanos posible.
   */
   fun plantar(planta: Planta) {
-    if (cantidadPlantas == this.cantidadMaximaPlantas()) {
+    if (this.cantidadPlantas() == this.cantidadMaximaPlantas()) {
       println("Ya no hay lugar en esta parcela")
     } else if (horasSolPorDia > planta.horasDeSolQueTolera() + 2) {
       println("No se puede plantar esto acá, se va a quemar")
     } else {
       plantas.add(planta)
-      cantidadPlantas += 1
     }
   }
 }
@@ -86,7 +85,7 @@ class Agricultora(val parcelas: MutableList<Parcela>) {
   datos y comportamiento inconsistentes.
   */
   fun plantarEstrategicamente(planta: Planta) {
-    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!!
+    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas() }!!
     laElegida.plantas.add(planta)
   }
 }

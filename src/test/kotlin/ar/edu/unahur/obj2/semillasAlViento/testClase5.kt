@@ -1,12 +1,10 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
-import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldNotContain
-import io.kotest.matchers.comparables.shouldBeLessThan
 import io.kotest.matchers.shouldBe
 
 class testClase5 : DescribeSpec ({
@@ -117,7 +115,7 @@ class testClase5 : DescribeSpec ({
             }
             it("parcela2 no permite plantar mas de 5 plantas") {
                 parcela2.plantar(plantaPruevaSojaNoPetisa)
-                parcela2.cantidadPlantas shouldBe 5
+                parcela2.`cantidadPlantas()` shouldBe 5
             }
 
             /*
