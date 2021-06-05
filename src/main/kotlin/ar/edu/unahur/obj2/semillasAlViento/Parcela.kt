@@ -3,42 +3,27 @@ package ar.edu.unahur.obj2.semillasAlViento
 class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
 
-  /*
-  La variable cantidadPlantas se opone a la cualidad de Mutaciones Controladas y resulta Redundante
-  ya que añade un cambio de estado interno innecesario que puede ser reemplazado calculando el tamaño
-  de la lista plantas.
-  */
   fun cantidadPlantas() = plantas.size
-
-  // Refactorizando Inicio
 
   fun parcelaTieneComplicaciones() =
     this.plantas.any { it.horasDeSolQueTolera() < this.horasSolPorDia }
 
-
-  //
-
   fun superficie() = ancho * largo
 
-  /*
-  La funcion cantidadMaximaPlantas afecta a la cualidad de Redundancia Minima por la repeticion
-  de variables que se usan para calcular un valor ya resuelto en la funcion superficie.
-  */
   fun cantidadMaximaPlantas() =
     if (ancho > largo) this.superficie() / 5 else this.superficie() / 3 + largo
 
-  /*
-  La funcion plantar disminuye la Abstraccion del diseño ya que las multiples condiciones pueden
-  minimizarse implementando distintas funciones que resuelvan la logica y retornen la menor
-  cantidad de valores booleanos posible.
-  */
   fun plantar(planta: Planta) {
-    if (this.cantidadPlantas() == this.cantidadMaximaPlantas()) {
-      error("Ya no hay lugar en esta parcela")
-    } else if (horasSolPorDia > planta.horasDeSolQueTolera() + 2) {
-      error("No se puede plantar esto acá, se va a quemar")
-    } else {
-      plantas.add(planta)
+    when {
+        this.cantidadPlantas() == this.cantidadMaximaPlantas() -> {
+          error("Ya no hay lugar en esta parcela")
+        }
+        horasSolPorDia > planta.horasDeSolQueTolera() + 2 -> {
+          error("No se puede plantar esto acá, se va a quemar")
+        }
+        else -> {
+          plantas.add(planta)
+        }
     }
   }
 }
