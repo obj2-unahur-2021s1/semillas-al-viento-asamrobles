@@ -135,11 +135,11 @@ class testClase5 : DescribeSpec ({
             parcela1.plantar(plantaPruevaSojaNo)
 
             it("una parcela que recibe 7 horas de sol no tiene complicaciones si sus plantas toleran al menos esa cantidad") {
-                plantaPruevaSojaSi.parcelaTieneComplicaciones(parcela1).shouldBeFalse()
+                parcela1.parcelaTieneComplicaciones().shouldBeFalse()
             }
             it("una parcela que recibe 7 horas de sol tiene complicaciones si agrego una planta que tolera 6 horas de sol") {
                 parcela1.plantar(plantaPruevaMenta)
-                plantaPruevaSojaSi.parcelaTieneComplicaciones(parcela1).shouldBeTrue()
+                parcela1.parcelaTieneComplicaciones().shouldBeTrue()
             }
         }
 
