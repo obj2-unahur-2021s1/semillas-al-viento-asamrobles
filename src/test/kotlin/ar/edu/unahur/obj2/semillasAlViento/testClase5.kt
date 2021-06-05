@@ -149,13 +149,8 @@ class testClase5 : DescribeSpec ({
                 parcela1.plantar(plantaPruevaSojaDaSemillas01)
                 parcela1.plantar(plantaPruevaSojaDaSemillas02)
                 parcela1.plantar(plantaPruevaSojaDaSemillas03)
-                /*
-            agricultora01.parcelasSemilleras() shouldBe true
+                agricultora01.parcelasSemilleras() shouldBe mutableListOf(parcela1,parcela2)
 
-            Este test no se puede hacer porque devuelve una lista en ves de un boleano lanza este error en
-            kotlin : expected:<true> but was:<[ar.edu.unahur.obj2.semillasAlViento.Parcela@629a894c, ar.edu.unahur.obj2.semillasAlViento.Parcela@68608577]>
-
-             */
             }
             it ("Provando metodo plantar estrategicamente, Tiene que plantar en la parcela con mas lugar, El cual funciona mal porque nunca cambia de parcela "){
                 parcela1.cantidadMaximaPlantas() shouldBe 8
