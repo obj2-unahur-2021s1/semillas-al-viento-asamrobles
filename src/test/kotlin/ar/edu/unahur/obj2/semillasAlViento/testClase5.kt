@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
+import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -110,23 +111,13 @@ class testClase5 : DescribeSpec ({
                 parcela3.plantas.shouldContainExactlyInAnyOrder(plantaPruevaSojaSi)
             }
             it("una parcela con lugar que recibe 9 horas de sol no permite plantar una planta que tolera menos de 8 horas"){
-                parcela3.plantar(plantaPruevaMenta)
-                parcela3.plantas.shouldNotContain(plantaPruevaMenta)
-            }
-            it("parcela2 no permite plantar mas de 5 plantas") {
-                parcela2.plantar(plantaPruevaSojaNoPetisa)
-                parcela2.`cantidadPlantas()` shouldBe 5
-            }
+                shouldThrowAny { parcela3.plantar(plantaPruevaMenta) }
 
-            /*
-            No se puede realizar el test sobre el error que arrojaria la funcion plantar ya que imprime por pantalla un mensaje
-            y no lanza un error que capturar.
-
+            }
             it("parcela2 tiene el maximo de plantas, si se intenta agregar plantas debe arrojar un error") {
-
                 shouldThrowAny { parcela2.plantar(plantaPruevaSojaNoPetisa) }
             }
-            */
+
         }
         describe("saber si una parcela tiene complicaciones") {
             parcela1.plantar(plantaPruevaSojaSi)

@@ -34,9 +34,9 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   */
   fun plantar(planta: Planta) {
     if (this.cantidadPlantas() == this.cantidadMaximaPlantas()) {
-      println("Ya no hay lugar en esta parcela")
+      error("Ya no hay lugar en esta parcela")
     } else if (horasSolPorDia > planta.horasDeSolQueTolera() + 2) {
-      println("No se puede plantar esto acá, se va a quemar")
+      error("No se puede plantar esto acá, se va a quemar")
     } else {
       plantas.add(planta)
     }
